@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const userRouter = require('./routes/userRouter');
 const errHandler = require('./middlewares/errHandlerMiddleware');
+const categoryRouter = require('./routes/categoryRouter');
 // const cors = require("cors");
 
 
@@ -20,8 +21,8 @@ const PORT = process.env.PORT || 6000;
 // app.use(cors());
 
 // Routes
-app.use('/', userRouter);
-// app.use('/api/grammercheck', grammerCheckRoute);
+app.use("/", userRouter);
+app.use("/", categoryRouter);
 // app.use('/api/spellcheck', spellCheckRoute);
 
 
