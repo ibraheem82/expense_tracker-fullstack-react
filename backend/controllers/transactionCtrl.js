@@ -34,11 +34,11 @@ const transactionController = {
         //     It's initialized with the user ID (req.user). This ensures only transactions belonging to the logged-in user are retrieved.
         let filters = { user: req.user }
 
-//         Date Range Filter:
-// If startDate is provided, filters transactions with dates greater than or equal to the start date.
-// If endDate is provided, filters transactions with dates less than or equal to the end date.
+        //         Date Range Filter:
+        // If startDate is provided, filters transactions with dates greater than or equal to the start date.
+        // If endDate is provided, filters transactions with dates less than or equal to the end date.
 
-// If startDate exists, it adds a filter to the filters object for the date field using the spread syntax (...).This ensures other potential filters on date are preserved.
+        // If startDate exists, it adds a filter to the filters object for the date field using the spread syntax (...).This ensures other potential filters on date are preserved.
         if (startDate) {
             filters.date = { ...filters.date, $gte: new Date(startDate) };
         }
@@ -56,24 +56,41 @@ const transactionController = {
         if (category) {
             if (category === "All") {
                 //! No category filter needed when filtering for 'All' 
-            } else if(category === "Uncategorized"){
+            } else if (category === "Uncategorized") {
                 // filter for transaction that are specifically categorized as 'Uncategorized'
                 filters.category = 'Uncategorized';
             } else {
                 filters.category = category
             }
         }
-        const transactions = await Transaction.find(filters).sort({date: -1});
+        const transactions = await Transaction.find(filters).sort({ date: -1 });
         res.json(transactions)
 
     }),
 
 
-
+    // ! UPDATE
     update: asyncHandler(async (req, res) => {
+        const transaction = await Transaction.findById(req.params.id);
+        if (transaction && transaction.user.toString() === req.user.toString()) {
+            (transaction.type = req.body.type || transaction.type);
+            (transaction.category = req.body.category || transaction.category);
+            (transaction.amount = req.body.amount || transaction.amount);
+            (transaction.date = req.body.date || transaction.date);
+            (transaction.description = req.body.description || transaction.description);
+
+            const updatedTransaction = await transaction.save();
+            res.json(updatedTransaction);
+        }
     }),
 
     delete: asyncHandler(async (req, res) => {
+        const transaction = await Transaction.findById(req.params.id);
+        if (transaction && transaction.user.toString() === req.user.toString()) {
+            await Transaction.findByIdAndDelete(req.params.id)
+            res.json({ message: "Transaction removed" })
+        }
+
     }),
 
 
