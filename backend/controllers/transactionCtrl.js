@@ -1,5 +1,4 @@
 const asyncHandler = require("express-async-handler");
-const Category = require("../model/Category");
 const Transaction = require("../model/Transaction");
 
 const transactionController = {
