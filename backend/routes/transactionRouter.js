@@ -9,6 +9,6 @@ const transactionRouter = express.Router();
 transactionRouter.post("/api/v1/transactions/create", isAuthenticated, transactionController.create)
 
 // lists
-transactionRouter.get("/api/v1/transactions/lists", isAuthenticated, transactionController.lists)
+transactionRouter.get("/api/v1/transactions/lists", isAuthenticated, transactionController.getFilteredTransactions)
 
 module.exports = transactionRouter;
