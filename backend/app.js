@@ -10,7 +10,7 @@ const transactionRouter = require('./routes/transactionRouter');
 
 const app = express();
 mongoose
-    .connect("mongodb://localhost:27017/expensetrackerapplication")
+    .connect(process.env.MONGO_URL)
     .then(() => console.log("DB Connected"))
     .catch((e) => console.log(e));
 
