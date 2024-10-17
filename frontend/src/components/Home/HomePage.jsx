@@ -93,7 +93,7 @@ const HeroSection = () => {
               "This app has revolutionized the way I track my expenses. Highly
               intuitive and user-friendly."
             </p>
-            <p className="mt-4 font-bold">- Adebayo Idowu</p>
+            <p className="mt-4 font-bold">- Ya Makoi</p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <FaQuoteLeft className="text-xl text-gray-400" />
