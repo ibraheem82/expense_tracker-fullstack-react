@@ -1,10 +1,11 @@
-import React from "react";
+
 import {
   AiOutlineCheckCircle,
   AiOutlineCloseCircle,
   AiOutlineLoading3Quarters,
 } from "react-icons/ai";
 
+// eslint-disable-next-line react/prop-types
 const AlertMessage = ({ type, message }) => {
   let icon;
   let bgColor;
