@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import * as Yup from "yup";
@@ -14,10 +14,11 @@ const validationSchema = Yup.object({
   email: Yup.string().email("Invalid").required("Email is required"),
   password: Yup.string()
     .min(5, "Password must be at least 5 characters long")
-    .required("Email is required"),
+    .required("Password is required"),
 });
 
 const LoginForm = () => {
+
   //Navigate
   const navigate = useNavigate();
   //Dispatch
@@ -38,21 +39,27 @@ const LoginForm = () => {
     mutationKey: ["login"],
   });
 
+
+
   // This hook is used to manage the login form state and validation. It takes an object with properties:
   const formik = useFormik({
     initialValues: {
-      email: "ben@gmail.com",
-      password: "123456",
+      email: "",
+      password: "",
     },
     // Validations
     validationSchema,
     //Submit
     onSubmit: (values) => {
-      console.log(values);
       //http request
 
       // * triggers the login API call with the submitted form data.
       mutateAsync(values)
+        .then((data) => {
+          dispatch(loginAction(data))
+          localStorage.setItem('userInfo', JSON.stringify(data));
+        })
+        .catch((error) => console.error(error));
 
       /* 
         Handles successful login response:
@@ -60,25 +67,21 @@ Dispatches the loginAction with the received data to update the Redux store.
 Saves the user data into local storage for potential future use.
 
       */
-        .then((data) => {
-          //dispatch
-          dispatch(loginAction(data));
-          //Save the user into localStorage
-          localStorage.setItem("userInfo", JSON.stringify(data));
-        })
-        .catch((e) => console.log(e));
     },
   });
+
   //Redirect
+    //Redirect
+    useEffect(() => {
+      setTimeout(() => {
+        if (isSuccess) {
+          navigate("/profile");
+        }
+      }, 3000);
+    }, [isPending, isError, error, isSuccess]);
 
   // it checks for isPending, isError, error, and isSuccess from the useMutation hook.
-  useEffect(() => {
-    setTimeout(() => {
-      if (isSuccess) {
-        navigate("/profile");
-      }
-    }, 3000);
-  }, [isPending, isError, error, isSuccess]);
+
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -101,7 +104,7 @@ Saves the user data into local storage for potential future use.
       <div className="relative">
         <FaEnvelope className="absolute top-3 left-3 text-gray-400" />
 
-      {/* The ... spread operator is used to extract the properties from the object returned by getFieldProps("email") and spread them individually onto the input element's attributes.
+        {/* The ... spread operator is used to extract the properties from the object returned by getFieldProps("email") and spread them individually onto the input element's attributes.
 This effectively binds the input element's behavior to the Formik's state management for the "email" field.   */}
         <input
           id="email"
