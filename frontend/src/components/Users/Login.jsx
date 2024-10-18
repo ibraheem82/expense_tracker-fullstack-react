@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
-import { loginAPI } from "../../services/users/userServices";
+import { loginAPI } from "../../services/users/userService";
 import AlertMessage from "../Alert/AlertMessage";
 import { loginAction } from "../../redux/slice/authSlice";
 
@@ -71,14 +71,14 @@ Saves the user data into local storage for potential future use.
   });
 
   //Redirect
-    //Redirect
-    useEffect(() => {
-      setTimeout(() => {
-        if (isSuccess) {
-          navigate("/profile");
-        }
-      }, 3000);
-    }, [isPending, isError, error, isSuccess]);
+  //Redirect
+  useEffect(() => {
+    setTimeout(() => {
+      if (isSuccess) {
+        navigate("/profile");
+      }
+    }, 3000);
+  }, [isPending, isError, error, isSuccess]);
 
   // it checks for isPending, isError, error, and isSuccess from the useMutation hook.
 
