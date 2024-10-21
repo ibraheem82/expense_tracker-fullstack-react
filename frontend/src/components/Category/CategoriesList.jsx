@@ -3,7 +3,6 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { deleteCategoryAPI, listCategoriesAPI } from "../../services/category/categoryService";
-import { useNavigate } from "react-router-dom";
 import AlertMessage from "../Alert/AlertMessage";
 
 
@@ -13,13 +12,9 @@ const CategoriesList = () => {
     queryKey: ["list-categories"]
   })
 
+
   // * Deleting
-
-  //Navigate
-  const navigate = useNavigate();
-
   // Mutation
-
   const { mutateAsync, isPending, error: categoryErr, isSuccess } = useMutation({
     mutationFn: deleteCategoryAPI,
     mutationKey: ["delete-category"],
