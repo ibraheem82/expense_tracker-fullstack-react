@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
-import { registerAPI } from "../../services/users/userServices";
+import { registerAPI } from "../../services/users/userService";
 import AlertMessage from "../Alert/AlertMessage";
 
 //Validations
