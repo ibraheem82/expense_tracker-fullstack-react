@@ -10,6 +10,7 @@ import AddCategory from "./components/Category/AddCategory";
 import CategoriesList from "./components/Category/CategoriesList";
 import UpdateCategory from "./components/Category/UpdateCategory";
 import TransactionForm from "./components/Transactions/TransactionForm";
+import Dashboard from "./components/Users/Dashboard";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/categories" element={<CategoriesList />} />
         <Route path="/update-category/:id" element={<UpdateCategory />} />
         <Route path="/add-transaction" element={<TransactionForm />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   )
