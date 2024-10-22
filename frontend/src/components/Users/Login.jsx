@@ -87,7 +87,7 @@ Saves the user data into local storage for potential future use.
       onSubmit={formik.handleSubmit}
       className="max-w-md mx-auto my-10 bg-white p-6 rounded-xl shadow-lg space-y-6 border border-gray-200"
     >
-      <h2 className="text-3xl font-semibold text-center text-gray-800">
+      <h2 className="text-3xl font-semibold text-center text-gray-800 font-calli">
         Login
       </h2>
       {/* Display messages */}
