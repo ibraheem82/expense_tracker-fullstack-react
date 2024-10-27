@@ -65,6 +65,7 @@ export const listTransactionsAPI = async ({
     endDate,
 }) => {
     const response = await axios.get(`${BASE_URL}/transactions/lists`, {
+        // Axios will append these as query strings to the URL.
         params: { category, endDate, startDate, type },
         headers: {
             Authorization: `Bearer ${token}`,
