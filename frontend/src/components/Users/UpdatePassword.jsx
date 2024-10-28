@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 import { changePasswordAPI } from "../../services/users/userService";
+import { logoutAction } from "../../redux/slice/authSlice";
 const validationSchema = Yup.object({
   password: Yup.string()
     .min(5, "Password must be at least 5 characters long")
@@ -12,7 +13,7 @@ const validationSchema = Yup.object({
 });
 const UpdatePassword = () => {
   //Dispatch
-
+  const dispatch = useDispatch();
   // Mutation
   const { mutateAsync, isPending, isError, error, isSuccess } = useMutation({
     mutationFn: changePasswordAPI,
@@ -28,7 +29,10 @@ const UpdatePassword = () => {
     onSubmit: (values) => {
       mutateAsync(values.password)
         .then((data) => {
-          console.log(data)
+          //Logout
+          dispatch(logoutAction());
+          //remove the user from storage
+          localStorage.removeItem("userInfo");
         })
         .catch((e) => console.log(e));
     },
