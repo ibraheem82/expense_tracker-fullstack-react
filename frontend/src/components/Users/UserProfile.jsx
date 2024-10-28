@@ -10,7 +10,7 @@ const UserProfile = () => {
   // Mutation
   const { mutateAsync, isPending, isError, error, isSuccess } = useMutation({
     mutationFn: updateProfileAPI,
-    mutationKey: ["change-password"],
+    mutationKey: ["update-profile"],
   });
 
   const formik = useFormik({
