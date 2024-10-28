@@ -99,7 +99,10 @@ const usersController = {
     const hashedPassword = await bcrypt.hash(newPassword, salt);
     user.password = hashedPassword;
 
-    await user.save();
+    await user.save({
+      //  This option instructs Mongoose to skip the built-in validation checks before saving the user object.
+      validateBeforeSave: false
+    });
 
     res.json({ message: "Password Changed successfully" });
   }),
