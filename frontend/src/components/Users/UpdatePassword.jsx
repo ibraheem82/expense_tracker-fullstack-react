@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 import { changePasswordAPI } from "../../services/users/userService";
 import { logoutAction } from "../../redux/slice/authSlice";
+import AlertMessage from "../Alert/AlertMessage";
 const validationSchema = Yup.object({
   password: Yup.string()
     .min(5, "Password must be at least 5 characters long")
@@ -48,6 +49,11 @@ const UpdatePassword = () => {
           >
             New Password
           </label>
+          {isPending && <AlertMessage type="loading" message="Updating....." />}
+          {isError && (
+            <AlertMessage type="error" message={error.response.data.message} />
+          )}
+          {isSuccess && <AlertMessage type="success" message="Password updated successfully." />}
           <div className="flex items-center border-2 py-2 px-3 rounded">
             <AiOutlineLock className="text-gray-400 mr-2" />
             <input
