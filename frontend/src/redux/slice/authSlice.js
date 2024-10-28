@@ -19,7 +19,7 @@ const authSlice = createSlice({
     user: JSON.parse(localStorage.getItem("userInfo")) || null,
   },
   //1 Reducers
-//   *  Reducer is a pure function that takes the current state and an action as input and returns a new state. It's the core mechanism for updating state in Redux applications.
+  //   *  Reducer is a pure function that takes the current state and an action as input and returns a new state. It's the core mechanism for updating state in Redux applications.
 
 
   reducers: {
