@@ -43,6 +43,10 @@ const RegistrationForm = () => {
       mutateAsync(values)
         .then((data) => {
           console.log(data);
+          // Display success message and redirect to email verification page
+          setTimeout(() => {
+            navigate("/verify-email"); // Assuming you have a route /verify-email
+          }, 2000); // Redirect after 2 seconds
         })
         .catch((e) => console.log(e));
     },
@@ -51,7 +55,7 @@ const RegistrationForm = () => {
   useEffect(() => {
     setTimeout(() => {
       if (isSuccess) {
-        navigate("/login");
+        // The success message is displayed, and redirection happens in the .then() block
       }
     }, 3000);
   }, [isPending, isError, error, isSuccess]);

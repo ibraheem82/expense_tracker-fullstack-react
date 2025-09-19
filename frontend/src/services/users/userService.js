@@ -12,6 +12,15 @@ export const loginAPI = async ({ email, password }) => {
   //Return a promise
   return response.data;
 };
+
+//! Verify Email
+export const verifyEmailAPI = async ({ email, verificationCode }) => {
+  const response = await axios.post(`${BASE_URL}/users/verify-email`, {
+    email,
+    verificationCode,
+  });
+  return response.data;
+};
 //! register
 export const registerAPI = async ({ email, password, username }) => {
   const response = await axios.post(`${BASE_URL}/users/register`, {

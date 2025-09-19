@@ -13,6 +13,8 @@ import TransactionForm from "./components/Transactions/TransactionForm";
 import Dashboard from "./components/Users/Dashboard";
 import UserProfile from "./components/Users/UserProfile";
 import AuthRoute from "./components/Auth/AuthRoute";
+import EmailVerification from "./components/Users/EmailVerification";
+import EmailVerificationPage from "./components/Users/EmailVerificationPage";
 
 
 function App() {
@@ -26,6 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HeroSection />} />
         <Route path="/login" element={<LoginForm />} />
+        <Route path="/veri" element={<EmailVerificationPage />} />
         <Route path="/register" element={<RegistrationForm />} />
         <Route path="/add-category" element={
           <AuthRoute>

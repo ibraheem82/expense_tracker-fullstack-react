@@ -74,13 +74,6 @@ Based on the backend routes, the following API endpoints are available:
 *   `PUT /api/v1/transactions/update/:id`: Update a transaction by ID (requires authentication).
 *   `DELETE /api/v1/transactions/delete/:id`: Delete a transaction by ID (requires authentication).
 
-## API Endpoints
-
-(Optional: Briefly list key API endpoints and their purpose)
-
-## Future Improvements
-
-(Optional: List potential future features or improvements)
 
 ## Future Improvements
 

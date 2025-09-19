@@ -59,7 +59,16 @@ const LoginForm = () => {
           dispatch(loginAction(data))
           localStorage.setItem('userInfo', JSON.stringify(data));
         })
-        .catch((error) => console.error(error));
+        .catch((error) => {
+          console.error(error);
+          // Check if the error message indicates unverified email
+          if (error.response && error.response.data && error.response.data.message === 'Email not verified') {
+            // Optionally, set a state here to display a specific message/link
+            // For now, the AlertMessage component handles the display based on isError and error object
+            console.log("Email not verified. Redirecting to verification page might be needed or show a specific message.");
+          }
+        });
+
 
       /* 
         Handles successful login response:
